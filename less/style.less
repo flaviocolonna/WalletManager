@@ -1,11 +1,42 @@
 @border-color: #bbb;
-header{
-
-}
+@green: rgb(0, 172, 21);
+@red: rgb(255, 90, 95);
+@grey: #f8f8f8;
 nav{
   #menu-mobile{
     float:right;
   }
+}
+main{
+  .title-intro{
+    text-align: center;
+  }
+  .actions{
+    text-align: center;
+    display: inline;
+  }
+  .table{
+    margin-top:3rem;
+    th{
+      text-align: center;
+    }
+  }
+  .green{
+    color:@green;
+  }
+  .red{
+    color: @red;
+  }
+  .no-data{
+    margin-top: 3rem;
+    text-align: center;
+  }
+}
+footer{
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  background-color: @grey;
 }
 /* Mobile first queries */
 
@@ -15,5 +46,11 @@ nav{
     #menu-mobile{
       float:none;
     }
+  }
+  main{
+
+  }
+  .sa-confirm-button-container{
+    display: inline;
   }
 }

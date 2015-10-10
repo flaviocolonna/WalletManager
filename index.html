@@ -29,10 +29,50 @@
         </div>
       </nav>
     </header>
-    <main>
-      
+    <main class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4 class="title-intro">Hi! Welcome to Wallet Manager!</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 actions">
+          <button class="btn btn-default btn-success" ng-click="income()">Income</button>
+          <button class="btn btn-default btn-danger" ng-click="withdraw()">Withdrawal</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <table class="table" ng-if="wallet.amounts>0">
+            <tr>
+              <th>
+                Date
+              </th>
+              <th>
+                Importo
+              </th>
+            </tr>
+            <tr ng-repeat="amount in wallet" ng-cloak>
+              <td>
+                {{amount.date}}
+              </td>
+              <td ng-class="">
+                {{amount.total | currency:"€ "}}
+              </td>
+            </tr>
+          </table>
+          <h4 ng-if="wallet.amounts==0" class="red no-data">No data found</h4>
+        </div>
+      </div>
     </main>
-    <footer>
+    <footer class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4>
+            Developed by Flavio Colonna Romano
+          </h4>
+        </div>
+      </div>
     </footer>
     <script src="/lib/angular.min.js"></script>
     <script src="/lib/sweetalert.min.js"></script>
