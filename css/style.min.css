@@ -1,0 +1,2 @@
+/* Mobile first queries */
+nav #menu-mobile{float:right}@media screen and (max-width: 767px){nav #menu-mobile{ float:none}}
