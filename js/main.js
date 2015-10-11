@@ -58,7 +58,9 @@ app.controller("WalletCtrl",function($scope){
     localStorage.setItem("wallet",JSON.stringify($scope.wallet));
     $('#menu-mobile').collapse("toggle");
   }
+  /* This function is used to add a new income into the wallet*/
   $scope.income = function(){
+    // open the sweetalert prompt
     swal({
       title: "Add income!",
       text: "Insert the amount of the income:",
@@ -69,8 +71,8 @@ app.controller("WalletCtrl",function($scope){
       inputPlaceholder: "Eg. 10.50"
     },
       function(inputValue){
-        if (inputValue === false) return false;
-        if (inputValue === "" || !parseFloat(inputValue)) {
+        if (inputValue === false) return false;//if there is no data in the input, prompt will be closed
+        if (inputValue === "" || !parseFloat(inputValue)) { //if there is the minus sign in the input, prompt will return an error
           swal.showInputError("You need to write something true!");
           return false
         }
@@ -80,18 +82,19 @@ app.controller("WalletCtrl",function($scope){
           type: "1", //1 means income
           index: $scope.wallet.amounts.length
         };
-
         $scope.$apply(function(){
           $scope.wallet.amounts.push(newAmount);
           $scope.wallet.total = $scope.wallet.total!=null ? parseFloat($scope.wallet.total)+parseFloat(inputValue) : parseFloat(inputValue);
         });
         localStorage.setItem("wallet",JSON.stringify($scope.wallet));
-        $scope.check();
+        $scope.check();//check if every total is correct
         swal("Income registered!", "You have registered a new income!","success");
       }
     );
   }
+    /* This function is used to add a new withdrawal into the wallet*/
   $scope.withdrawal = function(){
+      // open the sweetalert prompt
     swal({
       title: "Add withdrawal!",
       text: "Insert the amount of the withdrawal:",
@@ -102,12 +105,12 @@ app.controller("WalletCtrl",function($scope){
       inputPlaceholder: "Eg. 10.50"
     },
       function(inputValue){
-        if (inputValue === false) return false;
-        if (inputValue.indexOf("-")>=0){
+        if (inputValue === false) return false; //if there is no data in the input, prompt will be closed
+        if (inputValue.indexOf("-")>=0){ //if there is the minus sign in the input, prompt will return an error
             swal.showInputError("You cannot write negative sign!");
             return false;
           }
-        if (inputValue === "" || !parseFloat(inputValue)) {
+        if (inputValue === "" || !parseFloat(inputValue)) { //if there is a character inside the input, prompt will return an error
           swal.showInputError("You need to write something true!");
           return false
         }
@@ -116,7 +119,7 @@ app.controller("WalletCtrl",function($scope){
           date:new Date(),
           type: "0" //0 means Withdrawal
         };
-        if((parseFloat($scope.wallet.total)-parseFloat(inputValue))<0){
+        if((parseFloat($scope.wallet.total)-parseFloat(inputValue))<0){ ////if the number will make a negative total, an error will be shown
           swal("Error total amount","The wallet can never contain a negative amount!","error");
           return false
         }
@@ -124,7 +127,7 @@ app.controller("WalletCtrl",function($scope){
         $scope.wallet.amounts.push(newAmount);
         $scope.$apply();
         localStorage.setItem("wallet",JSON.stringify($scope.wallet));
-        $scope.check();
+        $scope.check(); //check if every total is correct
         swal("Withdrawal registered!", "You have registered a new withdrawal!","success");
       }
     );
