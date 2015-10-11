@@ -21,7 +21,7 @@
           </div>
           <div class="collapse navbar-collapse" id="menu-mobile">
             <ul class="nav navbar-nav">
-              <li><a href="#">Home</a></li>
+              <li><a href="index.html">Home</a></li>
               <li ng-click="reset()"><a href="#">Reset</a></li>
               <li><a href="https://github.com/flaviocolonna/WalletManager" target="blank">View Source</a></li>
             </ul>
@@ -48,7 +48,7 @@
             </h4>
           </div>
           <div class="col-xs-6">
-            <h4 id="total">
+            <h4 id="total" class="green">
               <i class="fa fa-eur"></i><span>{{wallet.total | number: '2'}}</span>
             </h4>
           </div>
@@ -61,11 +61,10 @@
                 Date
               </th>
               <th>
-                Importo
+                Amount
               </th>
             </tr>
             <tr ng-repeat="amount in wallet.amounts | reverse" ng-cloak>
-              {{$index}}
               <td>
                 {{amount.date | date: "yyyy-MM-dd 'at' HH:mm"}}
               </td>
