@@ -15,10 +15,29 @@ main{
     text-align: center;
     display: inline;
   }
-  .table{
-    margin-top:3rem;
-    th{
-      text-align: center;
+  #recap{
+    margin-top: 3rem;
+    margin-left: 3rem;
+    h4{
+      margin:0;
+    }
+    #total{
+      float: right;
+      margin-right: 3rem;
+      i{
+        padding-right: 1rem;
+      }
+    }
+  }
+  #table-data{
+    max-height: 400px;
+    height: 400px;
+    overflow-y: auto;
+    .table{
+      margin-top:3rem;
+      th,td{
+        text-align: center;
+      }
     }
   }
   .green{
@@ -32,11 +51,8 @@ main{
     text-align: center;
   }
 }
-footer{
-  width: 100%;
-  bottom: 0;
-  position: absolute;
-  background-color: @grey;
+.sa-confirm-button-container{
+  display: inline;
 }
 /* Mobile first queries */
 
@@ -50,7 +66,5 @@ footer{
   main{
 
   }
-  .sa-confirm-button-container{
-    display: inline;
-  }
+
 }

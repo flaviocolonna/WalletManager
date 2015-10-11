@@ -22,8 +22,8 @@
           <div class="collapse navbar-collapse" id="menu-mobile">
             <ul class="nav navbar-nav">
               <li><a href="#">Home</a></li>
-              <li><a href="#">Reset</a></li>
-              <li><a href="#">View Source</a></li>
+              <li ng-click="reset()"><a href="#">Reset</a></li>
+              <li><a href="https://github.com/flaviocolonna/WalletManager" target="blank">View Source</a></li>
             </ul>
           </div>
         </div>
@@ -38,12 +38,24 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 actions">
           <button class="btn btn-default btn-success" ng-click="income()">Income</button>
-          <button class="btn btn-default btn-danger" ng-click="withdraw()">Withdrawal</button>
+          <button class="btn btn-default btn-danger" ng-click="withdrawal()">Withdrawal</button>
         </div>
       </div>
-      <div class="row">
+      <div class="row" id="recap">
+          <div class="col-xs-6">
+            <h4>
+              Total
+            </h4>
+          </div>
+          <div class="col-xs-6">
+            <h4 id="total">
+              <i class="fa fa-eur"></i><span>{{wallet.total | number: '2'}}</span>
+            </h4>
+          </div>
+      </div>
+      <div class="row" id="table-data">
         <div class="col-xs-12">
-          <table class="table" ng-if="wallet.amounts>0">
+          <table class="table" ng-if="wallet.amounts.length>0">
             <tr>
               <th>
                 Date
@@ -52,28 +64,20 @@
                 Importo
               </th>
             </tr>
-            <tr ng-repeat="amount in wallet" ng-cloak>
+            <tr ng-repeat="amount in wallet.amounts | reverse" ng-cloak>
+              {{$index}}
               <td>
-                {{amount.date}}
+                {{amount.date | date: "yyyy-MM-dd 'at' HH:mm"}}
               </td>
-              <td ng-class="">
-                {{amount.total | currency:"€ "}}
+              <td ng-class="amount.type==1 ? 'green' : 'red'">
+                {{amount.total | number:'2' | currency:"€ "}}
               </td>
             </tr>
           </table>
-          <h4 ng-if="wallet.amounts==0" class="red no-data">No data found</h4>
+          <h4 ng-if="wallet.amounts.length==0" class="red no-data">No data found</h4>
         </div>
       </div>
     </main>
-    <footer class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <h4>
-            Developed by Flavio Colonna Romano
-          </h4>
-        </div>
-      </div>
-    </footer>
     <script src="/lib/angular.min.js"></script>
     <script src="/lib/sweetalert.min.js"></script>
     <script src="/lib/jquery-1.11.3.min.js"></script>
