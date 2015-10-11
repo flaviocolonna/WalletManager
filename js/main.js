@@ -22,11 +22,11 @@ app.controller("WalletCtrl",function($scope){
     var totalSaved = $scope.wallet.total;
     var totalIncomesSaved = $scope.wallet.totalIncomes;
     var totalWithdrawalsSaved = $scope.wallet.totalWithdrawals;
-    for(var i = 0; i<$scope.wallet.amounts.length; i++){
-      if($scope.wallet.amounts[i].type=="1"){
+    for(var i = 0; i<$scope.wallet.amounts.length; i++){ //this loop will checks the total of the amount, the total of the incomes and the total of the withdrawals.
+      if($scope.wallet.amounts[i].type=="1"){ //if this amount is an income
         total = parseFloat(total) + parseFloat($scope.wallet.amounts[i].total);
         totalIncomes = parseFloat(totalIncomes) + parseFloat($scope.wallet.amounts[i].total);
-      }else if($scope.wallet.amounts[i].type=="0"){
+      }else if($scope.wallet.amounts[i].type=="0"){//if this amount is a withdrawal
         total = parseFloat(total) - parseFloat($scope.wallet.amounts[i].total);
         totalWithdrawals = parseFloat(totalWithdrawals) + parseFloat($scope.wallet.amounts[i].total);
       }
@@ -76,6 +76,10 @@ app.controller("WalletCtrl",function($scope){
           swal.showInputError("You need to write something true!");
           return false
         }
+        if (inputValue.indexOf("-")>=0 || inputValue.indexOf("+")>=0){ //if there is the minus sign in the input, prompt will return an error
+            swal.showInputError("You cannot write negative or positive sign!");
+            return false;
+          }
         var newAmount = {
           total:parseFloat(inputValue),
           date:new Date(),
@@ -106,7 +110,7 @@ app.controller("WalletCtrl",function($scope){
     },
       function(inputValue){
         if (inputValue === false) return false; //if there is no data in the input, prompt will be closed
-        if (inputValue.indexOf("-")>=0){ //if there is the minus sign in the input, prompt will return an error
+        if (inputValue.indexOf("-")>=0 || inputValue.indexOf("+")>=0){ //if there is the minus sign in the input, prompt will return an error
             swal.showInputError("You cannot write negative sign!");
             return false;
           }

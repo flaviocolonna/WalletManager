@@ -35,13 +35,26 @@ main{
     }
   }
   #table-data{
-    max-height: 400px;
-    height: 400px;
-    overflow-y: auto;
     .table{
+      display: table;
+      width: 100%;
       margin-top:3rem;
       th,td{
         text-align: center;
+      }
+      tr{
+        width: 100%;
+        display: table;
+        text-align: center;
+      }
+      tbody{
+        float:left;
+        width: 100%;
+        height: 350px;
+        overflow: auto;
+        td{
+          width: 50%;
+        }
       }
     }
   }
@@ -58,6 +71,9 @@ main{
 }
 .sa-confirm-button-container{
   display: inline;
+}
+.col50{
+  width:50%;
 }
 /* Mobile first queries */
 

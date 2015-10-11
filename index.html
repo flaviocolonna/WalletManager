@@ -62,22 +62,26 @@ Developed with great passion by the front-end web developer Flavio Colonna Roman
       <div class="row" id="table-data">
         <div class="col-xs-12">
           <table class="table" ng-if="wallet.amounts.length>0">
-            <tr>
-              <th>
-                Date
-              </th>
-              <th>
-                Amount
-              </th>
-            </tr>
-            <tr ng-repeat="amount in wallet.amounts | reverse" ng-cloak>
-              <td>
+            <thead>
+              <tr>
+                <th class="col50">
+                  Date
+                </th>
+                <th class="col50">
+                  Amount
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="amount in wallet.amounts | reverse track by $index" ng-cloak>
+              <td class="col50">
                 {{amount.date | date: "yyyy-MM-dd 'at' HH:mm"}}
               </td>
-              <td ng-class="amount.type==1 ? 'green' : 'red'">
+              <td ng-class="amount.type==1 ? 'green' : 'red'" class="col50">
                 {{amount.total | number:'2' | currency:"€ "}}
               </td>
             </tr>
+          </tbody>
           </table>
           <h4 ng-if="wallet.amounts.length==0" class="red no-data">No data found</h4>
         </div>
