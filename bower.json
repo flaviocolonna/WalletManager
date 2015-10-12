@@ -1,0 +1,18 @@
+{
+  "name": "Wallet Manager",
+  "version": "1.0",
+  "homepage": "https://github.com/flaviocolonna/WalletManager",
+  "authors": [
+    "Flavio Colonna Romano"
+  ],
+  "description": "A web app to manage own wallet also in offline mode.",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "wallet",
+    "incomes",
+    "withdrawals"
+  ],
+  "license": "MIT",
+  "private": true
+}

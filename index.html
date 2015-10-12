@@ -11,9 +11,10 @@ Developed with great passion by the front-end web developer Flavio Colonna Roman
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wallet Manager</title>
     <link href="/css/style.min.css" rel="stylesheet" />
-    <link href="/css/sweetalert.css" rel="stylesheet" />
-    <link href="/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" />
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="/bower_components/angular/angular.min.js"></script>
   </head>
   <body ng-app="Main" ng-controller="WalletCtrl">
     <header>
@@ -27,9 +28,9 @@ Developed with great passion by the front-end web developer Flavio Colonna Roman
           </div>
           <div class="collapse navbar-collapse" id="menu-mobile">
             <ul class="nav navbar-nav">
-              <li><a href="index.html">Home</a></li>
-              <li ng-click="reset()"><a href="#">Reset</a></li>
-              <li><a href="https://github.com/flaviocolonna/WalletManager" target="blank">View Source</a></li>
+              <li title="Refresh the page"><a href="index.html">Home</a></li>
+              <li ng-click="reset()" title="Reset wallet"><a href="#">Reset</a></li>
+              <li title="View code"><a href="https://github.com/flaviocolonna/WalletManager" target="blank">View Source</a></li>
             </ul>
           </div>
         </div>
@@ -43,8 +44,8 @@ Developed with great passion by the front-end web developer Flavio Colonna Roman
       </div>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 actions">
-          <button class="btn btn-default btn-success" ng-click="income()"><i class="fa fa-plus-square-o"></i>Income</button>
-          <button class="btn btn-default btn-danger" ng-click="withdrawal()"><i class="fa fa-plus-square-o"></i>Withdrawal</button>
+          <button class="btn btn-default btn-success" ng-click="income()" title="add an income"><i class="fa fa-plus-square-o"></i>Income</button>
+          <button class="btn btn-default btn-danger" ng-click="withdrawal()" title="add a withdrawal"><i class="fa fa-plus-square-o"></i>Withdrawal</button>
         </div>
       </div>
       <div class="row" id="recap">
@@ -55,7 +56,7 @@ Developed with great passion by the front-end web developer Flavio Colonna Roman
           </div>
           <div class="col-xs-6">
             <h4 id="total" class="green">
-              <i class="fa fa-eur"></i><span>{{wallet.total | number: '2'}}</span>
+              <i class="fa fa-eur"></i><span ng-cloak>{{wallet.total | number: '2'}}</span>
             </h4>
           </div>
       </div>
@@ -64,21 +65,21 @@ Developed with great passion by the front-end web developer Flavio Colonna Roman
           <table class="table" ng-if="wallet.amounts.length>0">
             <thead>
               <tr>
-                <th class="col50">
+                <th class="col50 center-align">
                   Date
                 </th>
-                <th class="col50">
+                <th class="col50 right-align">
                   Amount
                 </th>
               </tr>
             </thead>
             <tbody>
             <tr ng-repeat="amount in wallet.amounts | reverse track by $index" ng-cloak>
-              <td class="col50">
+              <td class="col50 center-align">
                 {{amount.date | date: "yyyy-MM-dd 'at' HH:mm"}}
               </td>
-              <td ng-class="amount.type==1 ? 'green' : 'red'" class="col50">
-                {{amount.total | number:'2' | currency:"€ "}}
+              <td ng-class="amount.type==1 ? 'green col50 right-align' : 'red col50 right-align'">
+                {{amount.total | number:'2'}} &euro;
               </td>
             </tr>
           </tbody>
@@ -87,10 +88,9 @@ Developed with great passion by the front-end web developer Flavio Colonna Roman
         </div>
       </div>
     </main>
-    <script src="/lib/angular.min.js"></script>
-    <script src="/lib/sweetalert.min.js"></script>
-    <script src="/lib/jquery-1.11.3.min.js"></script>
-    <script src="/lib/bootstrap.min.js"></script>
+    <script src="/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>
   </body>
 </html>

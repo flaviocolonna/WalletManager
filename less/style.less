@@ -39,13 +39,9 @@ main{
       display: table;
       width: 100%;
       margin-top:3rem;
-      th,td{
-        text-align: center;
-      }
       tr{
         width: 100%;
         display: table;
-        text-align: center;
       }
       tbody{
         float:left;
@@ -63,6 +59,9 @@ main{
   }
   .red{
     color: @red;
+    td{
+      text-align: right;
+    }
   }
   .no-data{
     margin-top: 3rem;
@@ -74,6 +73,12 @@ main{
 }
 .col50{
   width:50%;
+}
+.right-align{
+  text-align: right;
+}
+.center-align{
+  text-align: center;
 }
 /* Mobile first queries */
 
