@@ -11,3 +11,5 @@ From the menu in the navigation bar, positioned at the top of the page, you can 
 This web app is built to work in offline mode.
 ##Version
 This version is the 1.0
+##Demo Link
+A demo is visible on my altervista host http://walletmanager.altervista.org/
